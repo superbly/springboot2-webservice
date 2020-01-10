@@ -1,2 +1,10 @@
-# springboot2-webservice
-SpringBoot2 basic
+# 스프링 부트와 AWS로 혼자 구현하는 웹 서비스  
+
+## 동기
+- Spring Framework를 이용하여 웹서비스를 구현해 보고싶었다.
+- 일단 빨리 만들어보고 싶었기 때문에 설정이 자동화 되어있는 Spring boot로 맛을 보는 것 좋을 것 같았고 AWS 이용하여 배포까지 하는 경험을 해보고싶었다.
+
+
+![trace](/image/IMG_3611.jpg)
+
+## 진행중 ~ !!
