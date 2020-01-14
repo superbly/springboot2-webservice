@@ -12,7 +12,6 @@ public class PostsSaveRequestDto {
     private String title;
     private String content;
     private String author;
-    private String email;
 
     @Builder
     public PostsSaveRequestDto(String title, String content, String author, String email){
