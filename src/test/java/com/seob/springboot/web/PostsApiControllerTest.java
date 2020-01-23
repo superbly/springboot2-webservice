@@ -53,7 +53,7 @@ public class PostsApiControllerTest {
     private MockMvc mvc;
 
     @Before
-    public void setup(){
+    public void setup(){    // 매번 테스트가 시작되기 전에 MockMvc 인스턴스를 생성
         mvc = MockMvcBuilders
                 .webAppContextSetup(context)
                 .apply(springSecurity())
@@ -80,7 +80,7 @@ public class PostsApiControllerTest {
         String url = "http://localhost:" + port + "/api/v1/posts";
 
         //when
-        mvc.perform(post(url)
+        mvc.perform(post(url)   // 생선된 MockMvc를 통해 API를 테스트
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(new ObjectMapper().writeValueAsString(requestDto)))
                 .andExpect(status().isOk());
@@ -115,12 +115,12 @@ public class PostsApiControllerTest {
         HttpEntity<PostsUpdateRequestDto> requestEntity = new HttpEntity<>(requestDto);
 
         //when
-        ResponseEntity<Long> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Long.class);
+        mvc.perform(post(url)
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(new ObjectMapper().writeValueAsString(requestDto)))
+                .andExpect(status().isOk());
 
         //then
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(responseEntity.getBody()).isGreaterThan(0L);
-
         List<Posts> all = postsRepository.findAll();
         assertThat(all.get(0).getTitle()).isEqualTo(expectedTitle);
         assertThat(all.get(0).getContent()).isEqualTo(expectedContent);
